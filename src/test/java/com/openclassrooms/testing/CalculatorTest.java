@@ -31,7 +31,8 @@ public class CalculatorTest {
         Integer product = calculator.multiply(2, 3);
 
         // assert that product is equal to 6
-        assertThat(product, is( equalTo(6))); // 2x3
+        Integer expected = 6;
+        assertThat(product, is( equalTo(expected))); // 2x3
     }
 
 }
