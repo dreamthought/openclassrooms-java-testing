@@ -60,7 +60,20 @@ public class CalculatorTest {
         Integer product = calculator.multiply(2, 3);
 
         // assert that product is equal to 6
-        assertThat(product, is( equalTo(expected))); // 2x3
+        assertThat(product, is(equalTo(expected))); // 2x3
     }
 
+    @Test(expected = UnsupportedOperationException.class)
+    public void cos_shouldNotBeSupported_whenCalledWithAnyValue() {
+        // arrange is done in @Before
+        // act
+        calculator.cos(0.8);
+        // assertion happens in the @Test
+    }
+
+    @Test(timeout = 2000l)
+    public void slowCalculation_shouldTakeUnreasonablyLong_whenCalled() {
+        // Act by calling a slow calculation
+        calculator.slowCalculation();
+    }
 }

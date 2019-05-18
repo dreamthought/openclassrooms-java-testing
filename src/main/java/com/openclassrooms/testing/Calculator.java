@@ -24,4 +24,16 @@ public class Calculator {
     public Integer multiply(int multiplicand, int multiplyer) {
         return multiplicand*multiplyer;
     }
+
+    public void cos(double v) {
+        throw new UnsupportedOperationException("Trigonometry not supported!");
+    }
+
+    public void slowCalculation() {
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            System.out.println("THIS OPERATION COMPLETED AFTER 3 SECONDS");
+        }
+    }
 }
