@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 /**
  * Reads a text file and returns a stream of calculations
  */
-public class BatchCalculationFileReader implements BatchCalculationFileService {
+public class BatchCalculationFileServiceImpl implements BatchCalculationFileService {
 
     /**
      * Returns a stream of the rows in a file

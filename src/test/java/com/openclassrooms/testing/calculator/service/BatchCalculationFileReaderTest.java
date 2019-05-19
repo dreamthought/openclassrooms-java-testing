@@ -21,14 +21,14 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({BatchCalculationFileReader.class, Files.class, Paths.class})
+@PrepareForTest({BatchCalculationFileServiceImpl.class, Files.class, Paths.class})
 public class BatchCalculationFileReaderTest {
 
     @Test
     public void getCalculationsFromBatchFile_shouldReturnAStreamOfCalculations_whenGivenAValidFile() throws IOException {
 
         // ARRANGE
-        BatchCalculationFileReader classUnderTest = new BatchCalculationFileReader();
+        BatchCalculationFileServiceImpl classUnderTest = new BatchCalculationFileServiceImpl();
 
         // Mocking
         String fakeBatchFile = "/path/to/batchFile.txt";
