@@ -1,8 +1,7 @@
-package com.openclassrooms.testing;
+package com.openclassrooms.testing.calculator;
 
-import org.junit.Ignore;
+import com.openclassrooms.testing.calculator.service.ConversionCalculator;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 
 import static java.lang.Math.PI;
 import static org.hamcrest.CoreMatchers.is;

@@ -1,6 +1,5 @@
-package com.openclassrooms.testing.validation;
+package com.openclassrooms.testing.calculator.validation;
 
-import com.openclassrooms.testing.validation.AgeValidator;
 import org.junit.Test;
 
 public class AgeValidatorTest {

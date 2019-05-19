@@ -1,4 +1,4 @@
-package com.openclassrooms.testing;
+package com.openclassrooms.testing.calculator;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

@@ -1,5 +1,6 @@
-package com.openclassrooms.testing;
+package com.openclassrooms.testing.calculator;
 
+import com.openclassrooms.testing.calculator.service.Calculator;
 import org.junit.*;
 
 import java.time.Duration;
