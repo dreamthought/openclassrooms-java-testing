@@ -17,25 +17,21 @@ public class CalculatorTest {
     @BeforeClass
     public static void beforeClass() {
         startTime = Instant.now();
-        System.out.println("CALLED ONLY ONCE BEFORE ALL TESTS AT " + startTime);
     }
 
     @AfterClass
     public static void afterClass() {
         Instant endedAt = Instant.now();
         Duration duration = Duration.between(startTime, endedAt);
-        System.out.println("CALLED AFTER ALL TESTS - ONLY ONCE - AT " + duration);
     }
 
     @Before
     public void setUp() {
-        System.out.println("CALLED BEFORE A TEST @Before");
         calculator = new Calculator();
     }
 
     @After
     public void tearDown() {
-        System.out.println("CALLED AFTER A TEST @After");
         calculator = null;
     }
 
