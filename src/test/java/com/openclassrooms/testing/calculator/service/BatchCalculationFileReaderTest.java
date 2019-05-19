@@ -45,7 +45,7 @@ public class BatchCalculationFileReaderTest {
         when(Files.lines(path)).thenReturn( expectedCalculations.stream() );
 
         // ACT
-        Stream<String> response = classUnderTest.getCalculationsFromBatchFile(fakeBatchFile);
+        Stream<String> response = classUnderTest.read(fakeBatchFile);
         List<String> responseAsList = response.collect(Collectors.toList());
 
         // ASSERT
