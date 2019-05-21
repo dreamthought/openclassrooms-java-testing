@@ -1,5 +1,6 @@
 package com.openclassrooms.testing.calculator.service;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
@@ -21,10 +22,11 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({BatchCalculationFileServiceImpl.class, Files.class, Paths.class})
+@PrepareForTest({BatchCalculationFileServiceImpl.class})
 public class BatchCalculationFileReaderTest {
 
     @Test
+    @Ignore("Powermock slows this test down. Use an integration test instead.")
     public void getCalculationsFromBatchFile_shouldReturnAStreamOfCalculations_whenGivenAValidFile() throws IOException {
 
         // ARRANGE

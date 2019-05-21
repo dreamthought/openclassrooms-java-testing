@@ -8,8 +8,8 @@ import java.time.Instant;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
+
 public class CalculatorTest {
 
     private static Instant startTime;
@@ -37,7 +37,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void add_shouldReturnTheSum_ofTwoNumbers() {
+    public void add_shouldReturnTheSum_ofTwoPositiveNumbers() {
         // arrange
         Integer expected = 3; // 1+2
 
@@ -49,7 +49,31 @@ public class CalculatorTest {
     }
 
     @Test
-    public void multiply_shouldReturnTheProduct_ofTwoNumbers() {
+    public void add_shouldReturnTheSum_ofNegativeNumbers() {
+        // arrange
+        Integer expected = -3; // -1+-2
+
+        // act
+        Integer result = calculator.add(-1, -2);
+
+        // assert
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void add_shouldReturnTheSum_ofAPositiveAndNegativeNumber() {
+        // arrange
+        Integer expected = 1; // -2+3
+
+        // act
+        Integer result = calculator.add(-2, 3);
+
+        // assert
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void multiply_shouldReturnTheProduct_ofTwoPositiveNumbers() {
         // arrange
         Integer expected = 6;
 
@@ -68,9 +92,29 @@ public class CalculatorTest {
         // assertion happens in the @Test
     }
 
-    @Test(timeout = 2000l)
+    @Test(timeout = 0020)
     public void slowCalculation_shouldTakeUnreasonablyLong_whenCalled() {
         // Act by calling a slow calculation
         calculator.slowCalculation();
     }
+
+    // Part 2 - Chapter 2 - Screencast 2
+    private static Integer lastNumber = 2;
+
+    @Test
+    @Ignore("Re-enable to make this test brittle")
+    public void add_shouldAddTwo_toTwo() throws InterruptedException {
+        //fail();
+        lastNumber = calculator.add(lastNumber, 2);
+        assertThat(lastNumber, is(equalTo(4)));
+    }
+
+    @Test
+    @Ignore("Re-enable to make this test brittle")
+    public void add_shouldAddTwo_toFour() throws InterruptedException {
+        lastNumber = calculator.add(lastNumber, 2);
+        assertThat(lastNumber, is(equalTo(6)));
+    }
+
+
 }

@@ -7,9 +7,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -19,48 +21,45 @@ import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class BatchCalculatorTest {
+public class BatchCalculatorComponentIntegrationTest {
+
+
     // index of fixtures by type
     private static final int MULTIPLICATION_INDEX = 0;
     private static final int ADDITION_INDEX = 1;
 
-    @Mock
-    BatchCalculationFileService batchCalculationFileService;
+    private String FIXTURE_FILE;
 
-    @Mock
-    Calculator calculator;
+
+    @Spy
+    private BatchCalculationFileService batchCalculationFileService = new BatchCalculationFileServiceImpl();
+
+    @Spy
+    private Calculator calculator = new Calculator();
 
     // The class we're testing
     BatchCalculator classUnderTest;
 
     @Before
     public void setup() throws IOException {
-        // This is our fake file content
-        Stream<String> calculations = Arrays.asList("3 x 2", "2 + 2").stream();
-
-        // Let's make sure that the batch calculation service returns this
-        when(batchCalculationFileService.read(Mockito.any(String.class))).thenReturn(calculations);
-
-        // Set up the calculator
-        when(calculator.add(2, 2)).thenReturn(4);
-        when(calculator.multiply(3, 2)).thenReturn(6);
-
         classUnderTest = new BatchCalculator(batchCalculationFileService, calculator);
+        FIXTURE_FILE =
+                getClass().getClassLoader().getResource("data/calculations").getPath();
+        FIXTURE_FILE = FIXTURE_FILE.substring(1);
     }
 
     @Test
     public void calculateFromFile_shouldOpenTheRightFile_whenGivenAPath() throws IOException {
         // ACT
-        List<CalculationModel> actual = classUnderTest.calculateFromFile("/path/to/fake/file");
-
+        List<CalculationModel> actual = classUnderTest.calculateFromFile(FIXTURE_FILE);
         // ASSERT we get back usable models
-        verify(batchCalculationFileService).read("/path/to/fake/file");
+        //verify(batchCalculationFileService).read(FIXTURE_FILE);
     }
 
     @Test
     public void calculateFromFile_shouldReturnTwoSolutions_forTwoCalculations() throws IOException {
         // ACT
-        List<CalculationModel> actual = classUnderTest.calculateFromFile("/path/to/fake/fail");
+        List<CalculationModel> actual = classUnderTest.calculateFromFile(FIXTURE_FILE);
 
         // ASSERT we get back usable models
         assertThat(actual, hasSize(2));
@@ -69,7 +68,7 @@ public class BatchCalculatorTest {
     @Test
     public void calculateFromFile_shouldReturnTheCorrectAnswer_forAdditions() throws IOException {
         // ACT
-        List<CalculationModel> solutions = classUnderTest.calculateFromFile("/path/to/fake/fail");
+        List<CalculationModel> solutions = classUnderTest.calculateFromFile(FIXTURE_FILE);
         Integer answer = solutions.get(ADDITION_INDEX).getSolution();
 
         // ASSERT we get back usable models
@@ -79,7 +78,7 @@ public class BatchCalculatorTest {
     @Test
     public void calculateFromFile_shouldCorrectlyAddWithTheCalculator_forAdditions() throws IOException {
         // ACT
-        List<CalculationModel> solutions = classUnderTest.calculateFromFile("/path/to/fake/fail");
+        List<CalculationModel> solutions = classUnderTest.calculateFromFile(FIXTURE_FILE);
         Integer answer = solutions.get(ADDITION_INDEX).getSolution();
 
         // ASSERT we get back usable models
@@ -89,7 +88,7 @@ public class BatchCalculatorTest {
     @Test
     public void calculateFromFile_shouldReturnTheCorrectAnswer_forMultiplication() throws IOException {
         // ACT
-        List<CalculationModel> solutions = classUnderTest.calculateFromFile("/path/to/fake/fail");
+        List<CalculationModel> solutions = classUnderTest.calculateFromFile(FIXTURE_FILE);
         Integer answer = solutions.get(MULTIPLICATION_INDEX).getSolution();
 
         // ASSERT we get back usable models
@@ -99,7 +98,7 @@ public class BatchCalculatorTest {
     @Test
     public void calculateFromFile_shouldCorrectlyMultiplyWithTheCalculator_forProducts() throws IOException {
         // ACT
-        List<CalculationModel> solutions = classUnderTest.calculateFromFile("/path/to/fake/fail");
+        List<CalculationModel> solutions = classUnderTest.calculateFromFile(FIXTURE_FILE);
         Integer answer = solutions.get(ADDITION_INDEX).getSolution();
 
         // ASSERT we get back usable models
@@ -109,7 +108,7 @@ public class BatchCalculatorTest {
     @Test
     public void calculateFromFile_shouldPassbackTheCorrectModel_forCalculatoins() throws IOException {
         // ACT
-        List<CalculationModel> solutions = classUnderTest.calculateFromFile("/path/to/fake/fail");
+        List<CalculationModel> solutions = classUnderTest.calculateFromFile(FIXTURE_FILE);
         CalculationModel answer = solutions.get(ADDITION_INDEX);
 
         // ASSERT we get back usable models

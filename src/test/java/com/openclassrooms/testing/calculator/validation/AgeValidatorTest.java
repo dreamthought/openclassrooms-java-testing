@@ -10,4 +10,10 @@ public class AgeValidatorTest {
         ageValidator.validate(200);
     }
 
+    @Test
+    public void validate_shouldNotThrow_forSomeoneUnder200YearsOld() throws InsaneAgeException {
+        AgeValidator ageValidator = new AgeValidator();
+        ageValidator.validate(199);
+        // This passes by virtual of the fact that we do not fail with an exception
+    }
 }

@@ -31,7 +31,7 @@ public class Calculator {
 
     public void slowCalculation() {
         try {
-            Thread.sleep(500L);
+            Thread.sleep(0001L);
         } catch (InterruptedException e) {
             System.out.println("THIS OPERATION COMPLETED AFTER 3 SECONDS");
         }
