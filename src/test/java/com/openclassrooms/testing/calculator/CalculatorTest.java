@@ -92,6 +92,23 @@ public class CalculatorTest {
         // assertion happens in the @Test
     }
 
+    @Test
+    public void divide_shouldReturnTheQuotient_ofTwoPositiveNumbers() {
+        Integer quotient = calculator.divide(4, 2);
+        assertThat(quotient, is(equalTo(2)));
+    }
+
+    @Test
+    public void divide_shouldReturnTheQuotient_ofTwoNegativeNumbers() {
+        Integer quotient = calculator.divide(-4, -2);
+        assertThat(quotient, is(equalTo(2)));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void divide_shouldThrowAnException_ifDividingByZero() {
+        calculator.divide(4, 0);
+    }
+
     @Test(timeout = 0020)
     public void slowCalculation_shouldTakeUnreasonablyLong_whenCalled() {
         // Act by calling a slow calculation
@@ -103,15 +120,14 @@ public class CalculatorTest {
 
     @Test
     @Ignore("Re-enable to make this test brittle")
-    public void add_shouldAddTwo_toTwo() throws InterruptedException {
-        //fail();
+    public void add_shouldAddTwo_toTwo() {
         lastNumber = calculator.add(lastNumber, 2);
         assertThat(lastNumber, is(equalTo(4)));
     }
 
     @Test
     @Ignore("Re-enable to make this test brittle")
-    public void add_shouldAddTwo_toFour() throws InterruptedException {
+    public void add_shouldAddTwo_toFour() {
         lastNumber = calculator.add(lastNumber, 2);
         assertThat(lastNumber, is(equalTo(6)));
     }

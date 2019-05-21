@@ -7,8 +7,8 @@ public class Calculator {
 
     /**
      * Adds two values
-     * @param augend
-     * @param addend
+     * @param augend for addition
+     * @param addend for addition
      * @return Sum of the two arguments
      */
     public Integer add(int augend, int addend) {
@@ -17,8 +17,8 @@ public class Calculator {
 
     /**
      * Multiplies two values
-     * @param multiplicand
-     * @param multiplyer
+     * @param multiplicand for multiplication
+     * @param multiplyer for multiplication
      * @return The product of multiplying two values
      */
     public Integer multiply(int multiplicand, int multiplyer) {
@@ -35,5 +35,12 @@ public class Calculator {
         } catch (InterruptedException e) {
             System.out.println("THIS OPERATION COMPLETED AFTER 3 SECONDS");
         }
+    }
+
+    public Integer divide(int dividend, int divisor) {
+        if (divisor == 0) {
+            throw new IllegalArgumentException("Divisor cannot be zero!");
+        }
+        return dividend / divisor;
     }
 }

@@ -35,6 +35,7 @@ public class BatchCalculator {
         calculations.forEach(calculation -> {
             CalculationModel calculationModel = CalculationModel.fromText(calculation);
             CalculationModel solutionModel = solve(calculationModel);
+            solutionModel.setLeftArgument( calculationModel.getLeftArgument() );
             solutions.add(solutionModel);
         });
         return solutions;
@@ -43,7 +44,7 @@ public class BatchCalculator {
     /**
      * Takes a definition of a calculation and solves it
      * @param calculationModel
-     * @return
+     * @return A model for calulation
      */
     private CalculationModel solve(CalculationModel calculationModel) {
         CalculationType type = calculationModel.getType();
