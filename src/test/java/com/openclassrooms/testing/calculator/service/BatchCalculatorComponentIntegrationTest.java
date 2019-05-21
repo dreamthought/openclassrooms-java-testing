@@ -11,7 +11,9 @@ import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -41,11 +43,11 @@ public class BatchCalculatorComponentIntegrationTest {
     BatchCalculator classUnderTest;
 
     @Before
-    public void setup() throws IOException {
+    public void setup() throws IOException, URISyntaxException {
         classUnderTest = new BatchCalculator(batchCalculationFileService, calculator);
+        // Munged for windows
         FIXTURE_FILE =
-                getClass().getClassLoader().getResource("data/calculations").getPath();
-        FIXTURE_FILE = FIXTURE_FILE.substring(1);
+                Paths.get(getClass().getClassLoader().getResource("data/calculations").toURI()).toString();
     }
 
     @Test
