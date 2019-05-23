@@ -1,4 +1,4 @@
-package com.openclassrooms.testing.calculator.service;
+package com.openclassrooms.testing.calculator.domain;
 
 /**
  * Converts between different types of units.

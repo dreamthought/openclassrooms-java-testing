@@ -1,4 +1,4 @@
-package com.openclassrooms.testing.calculator.service;
+package com.openclassrooms.testing.calculator.domain;
 
 /**
  * A very simple calculator

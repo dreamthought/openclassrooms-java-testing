@@ -1,6 +1,6 @@
-package com.openclassrooms.testing.calculator;
+package com.openclassrooms.testing.calculator.domain;
 
-import com.openclassrooms.testing.calculator.service.Calculator;
+import com.openclassrooms.testing.calculator.domain.Calculator;
 import org.junit.*;
 
 import java.time.Duration;
@@ -36,6 +36,7 @@ public class CalculatorTest {
         calculator = null;
     }
 
+    // ADDITION
     @Test
     public void add_shouldReturnTheSum_ofTwoPositiveNumbers() {
         // arrange
@@ -72,6 +73,7 @@ public class CalculatorTest {
         assertEquals(expected, result);
     }
 
+    // MULTIPLICATION
     @Test
     public void multiply_shouldReturnTheProduct_ofTwoPositiveNumbers() {
         // arrange
@@ -84,14 +86,7 @@ public class CalculatorTest {
         assertThat(product, is(equalTo(expected))); // 2x3
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void cos_shouldNotBeSupported_whenCalledWithAnyValue() {
-        // arrange is done in @Before
-        // act
-        calculator.cos(0.8);
-        // assertion happens in the @Test
-    }
-
+    // DIVISION
     @Test
     public void divide_shouldReturnTheQuotient_ofTwoPositiveNumbers() {
         Integer quotient = calculator.divide(4, 2);
@@ -109,6 +104,16 @@ public class CalculatorTest {
         calculator.divide(4, 0);
     }
 
+    // TRIG
+    @Test(expected = UnsupportedOperationException.class)
+    public void cos_shouldNotBeSupported_whenCalledWithAnyValue() {
+        // arrange is done in @Before
+        // act
+        calculator.cos(0.8);
+        // assertion happens in the @Test
+    }
+
+    // Slow and Unpredictable Tests
     @Test(timeout = 0020)
     public void slowCalculation_shouldTakeUnreasonablyLong_whenCalled() {
         // Act by calling a slow calculation
@@ -131,6 +136,5 @@ public class CalculatorTest {
         lastNumber = calculator.add(lastNumber, 2);
         assertThat(lastNumber, is(equalTo(6)));
     }
-
 
 }

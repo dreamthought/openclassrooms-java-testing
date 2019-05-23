@@ -1,4 +1,4 @@
-package com.openclassrooms.testing.calculator.model;
+package com.openclassrooms.testing.calculator.domain.model;
 
 public enum CalculationType {
     ADDITION,

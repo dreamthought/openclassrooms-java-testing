@@ -1,6 +1,6 @@
-package com.openclassrooms.testing.calculator;
+package com.openclassrooms.testing.calculator.domain;
 
-import com.openclassrooms.testing.calculator.service.ConversionCalculator;
+import com.openclassrooms.testing.calculator.domain.ConversionCalculator;
 import org.junit.Test;
 
 import static java.lang.Math.PI;

@@ -1,8 +1,9 @@
-package com.openclassrooms.testing.calculator.model;
+package com.openclassrooms.testing.calculator.domain.model;
 
 /**
  * A model to represent a two argument integer calculation
- * which needs to be performed
+ * which needs to be performed.
+ *
  */
 public class CalculationModel {
     public static final String SEPARATOR = " ";
@@ -10,21 +11,33 @@ public class CalculationModel {
     private Integer rightArgument;
     private CalculationType type;
     private Integer solution;
+    private String formattedSolution;
 
+    public CalculationModel(CalculationType addition, int leftArgument, int rightArgument) {
+        this.type = addition;
+        this.leftArgument = leftArgument;
+        this.rightArgument = rightArgument;
+    }
+
+    /**
+     * Builds a Calculation from a string such as 2 + 2
+     * @param calculation in written form
+     * @return model representing the calculatoin
+     */
     public static CalculationModel fromText(String calculation) {
-        CalculationModel model = new CalculationModel();
         String[] parts = calculation.split(SEPARATOR);
+        Integer leftArgument = Integer.parseInt(parts[0]);
+        Integer rightArgument = Integer.parseInt(parts[2]);
+        CalculationType calculationType = CalculationType.fromSymbol(parts[1]);
 
-        model.setLeftArgument(Integer.parseInt(parts[0]));
-        model.setRightArgument(Integer.parseInt(parts[2]));
-        String operation = parts[1];
-        model.setType( CalculationType.fromSymbol(operation) );
-        return model;
+        return new CalculationModel(
+                calculationType, leftArgument, rightArgument);
     }
 
     public Integer getLeftArgument() {
         return leftArgument;
     }
+
 
     public void setLeftArgument(Integer leftArgument) {
         this.leftArgument = leftArgument;
@@ -52,5 +65,13 @@ public class CalculationModel {
 
     public void setSolution(Integer solution) {
         this.solution = solution;
+    }
+
+    public String getFormattedSolution() {
+        return formattedSolution;
+    }
+
+    public void setFormattedSolution(String formattedSolution) {
+        this.formattedSolution = formattedSolution;
     }
 }

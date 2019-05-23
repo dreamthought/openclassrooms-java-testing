@@ -1,7 +1,8 @@
 package com.openclassrooms.testing.calculator.service;
 
-import com.openclassrooms.testing.calculator.model.CalculationModel;
-import com.openclassrooms.testing.calculator.model.CalculationType;
+import com.openclassrooms.testing.calculator.domain.Calculator;
+import com.openclassrooms.testing.calculator.domain.model.CalculationModel;
+import com.openclassrooms.testing.calculator.domain.model.CalculationType;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +31,9 @@ public class BatchCalculatorTest {
     @Mock
     Calculator calculator;
 
+    @Mock
+    SolutionFormatter formatter;
+
     // The class we're testing
     BatchCalculator classUnderTest;
 
@@ -45,7 +49,7 @@ public class BatchCalculatorTest {
         when(calculator.add(2, 2)).thenReturn(4);
         when(calculator.multiply(3, 2)).thenReturn(6);
 
-        classUnderTest = new BatchCalculator(batchCalculationFileService, calculator);
+        classUnderTest = new BatchCalculator(batchCalculationFileService, calculator, formatter);
     }
 
     @Test
