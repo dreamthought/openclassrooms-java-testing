@@ -37,7 +37,6 @@ public class BatchCalculationFileReaderTest {
         // fake response stream
         List<String> expectedCalculations = Arrays.asList("1 + 2", "3 - 2");
 
-
         PowerMockito.mockStatic(Files.class);
         PowerMockito.mockStatic(Paths.class);
 

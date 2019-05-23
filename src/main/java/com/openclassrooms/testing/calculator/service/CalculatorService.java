@@ -9,6 +9,7 @@ public class CalculatorService implements Solver{
 
     public CalculatorService(Calculator calculator, SolutionFormatter formatter) {
         this.calculator = calculator;
+        this.formatter = formatter;
     }
 
     public CalculationModel calculate(CalculationModel calculationModel) {

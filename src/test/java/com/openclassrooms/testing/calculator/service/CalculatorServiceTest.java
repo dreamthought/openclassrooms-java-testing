@@ -26,7 +26,6 @@ public class CalculatorServiceTest {
 
     @Before
     public void setUp() {
-        when(formatter.format(any())).thenReturn("");
         underTest = new CalculatorService(calculator, formatter);
     }
 
@@ -142,8 +141,10 @@ public class CalculatorServiceTest {
     }
 
     @Test
-    public void calculate_shouldReturnACommaFormattedSolution_forAnyLargeCalculation() {
+    public void calculate_shouldReturnAFormattedSolution_forAnyLargeCalculation() {
         // Arrange
+        when(calculator.add(100000, 20)).thenReturn(100020);
+        when(formatter.format(100020)).thenReturn("100,020");
         CalculationModel calculation = new CalculationModel(
                 CalculationType.ADDITION, 100000, 20);
 

@@ -22,7 +22,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-@Ignore
 public class BatchCalculatorComponentIntegrationTest {
 
 
@@ -48,6 +47,7 @@ public class BatchCalculatorComponentIntegrationTest {
     @Before
     public void setup() throws IOException, URISyntaxException {
         classUnderTest = new BatchCalculator(batchCalculationFileService, calculator, formatter);
+
         // Munged for windows
         FIXTURE_FILE =
                 Paths.get(getClass().getClassLoader().getResource("data/calculations").toURI()).toString();
