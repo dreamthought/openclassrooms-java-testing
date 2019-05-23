@@ -39,7 +39,6 @@ public class BatchCalculator implements Solver {
         calculations.forEach(calculation -> {
             CalculationModel calculationModel = CalculationModel.fromText(calculation);
             CalculationModel solutionModel = solve(calculationModel, calculator, formatter);
-            solutionModel.setLeftArgument( calculationModel.getLeftArgument() );
             solutions.add(solutionModel);
         });
         return solutions;
