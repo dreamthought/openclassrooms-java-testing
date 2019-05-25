@@ -12,8 +12,9 @@ public class StatisticsCalculator {
     }
 
     public Integer average(List<Integer> samples) {
-        samples.forEach(i->summaryStatistics.accept(i));
-        double average = summaryStatistics.getAverage();
-        return Double.valueOf(average).intValue();
+        samples.forEach(summaryStatistics::accept);
+        // Extract the average
+        Double average = summaryStatistics.getAverage();
+        return average.intValue();
     }
 }
