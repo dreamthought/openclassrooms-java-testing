@@ -6,7 +6,7 @@ package com.openclassrooms.testing.calculator.domain.model;
  *
  */
 public class CalculationModel {
-    public static final String SEPARATOR = " ";
+    private static final String SEPARATOR = " ";
     private Integer leftArgument;
     private Integer rightArgument;
     private CalculationType type;
@@ -19,6 +19,13 @@ public class CalculationModel {
         this.rightArgument = rightArgument;
     }
 
+    public CalculationModel(CalculationType addition, int leftArgument, int rightArgument, Integer solution) {
+        this.type = addition;
+        this.leftArgument = leftArgument;
+        this.rightArgument = rightArgument;
+        this.solution = solution;
+    }
+
     /**
      * Builds a Calculation from a string such as 2 + 2
      * @param calculation in written form
@@ -26,8 +33,8 @@ public class CalculationModel {
      */
     public static CalculationModel fromText(String calculation) {
         String[] parts = calculation.split(SEPARATOR);
-        Integer leftArgument = Integer.parseInt(parts[0]);
-        Integer rightArgument = Integer.parseInt(parts[2]);
+        int leftArgument = Integer.parseInt(parts[0]);
+        int rightArgument = Integer.parseInt(parts[2]);
         CalculationType calculationType = CalculationType.fromSymbol(parts[1]);
 
         return new CalculationModel(

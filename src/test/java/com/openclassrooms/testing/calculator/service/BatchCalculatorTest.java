@@ -3,17 +3,17 @@ package com.openclassrooms.testing.calculator.service;
 import com.openclassrooms.testing.calculator.domain.model.CalculationModel;
 import com.openclassrooms.testing.calculator.domain.model.CalculationType;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.stubbing.Answer;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -35,25 +35,47 @@ public class BatchCalculatorTest {
     CalculatorService calculatorService;
 
     // The class we're testing
-    BatchCalculator classUnderTest;
+    private BatchCalculator classUnderTest;
 
     @Before
     public void setup() throws IOException {
         // This is our fake file content
-        Stream<String> calculations = Arrays.asList("3 x 2", "4 + 2").stream();
+        Stream<String> calculations = Stream.of("3 x 2", "4 + 2");
 
         // Let's make sure that the batch calculation service returns this
         when(batchCalculationFileService.read(Mockito.any(String.class))).thenReturn(calculations);
-
-        // Set up the calculator
-        CalculationModel model = new CalculationModel(
-                CalculationType.MULTIPLICATION, 3, 2);
-        model.setSolution(6);
-
-        when(calculatorService.calculate(ArgumentMatchers.any(CalculationModel.class)))
-                .thenReturn(model);
-
+        setupCalculatorServiceMock();
         classUnderTest = new BatchCalculator(batchCalculationFileService, calculatorService);
+    }
+
+    private void setupCalculatorServiceMock() {
+        // Set up the calculator service mock
+        when(calculatorService.calculate(ArgumentMatchers.any(CalculationModel.class)))
+                .thenAnswer(
+                        new Answer<CalculationModel>() {
+
+                            private CalculationModel multiplicationModel = new CalculationModel(
+                                    CalculationType.MULTIPLICATION, 3, 2, 6);
+
+
+                            private CalculationModel additionModel = new CalculationModel(
+                                    CalculationType.ADDITION, 4, 2, 6);
+
+                            private Integer invocations = 0;
+
+                            @Override
+                            public CalculationModel answer(InvocationOnMock invocationOnMock){
+                                // count the number of calls
+                                invocations++;
+                                if (invocations == 1) {
+                                    return multiplicationModel;
+                                }
+                                // FIXME : throw an execption if we call this too many times.
+                                return additionModel;
+
+                            }
+                        }
+                );
     }
 
     @Test
@@ -75,25 +97,14 @@ public class BatchCalculatorTest {
     }
 
     @Test
-    @Ignore("Needs a mock CalculatorService with multiple solutions")
+    //@Ignore("Needs a mock CalculatorService with multiple solutions")
     public void calculateFromFile_shouldReturnTheCorrectAnswer_forAdditions() throws IOException {
         // ACT
         List<CalculationModel> solutions = classUnderTest.calculateFromFile("/path/to/fake/fail");
         Integer answer = solutions.get(ADDITION_INDEX).getSolution();
 
         // ASSERT we get back usable models
-        assertThat(answer, is(equalTo(4)));
-    }
-
-    @Test
-    @Ignore("Needs a mock CalculatorService with multiple solutions")
-    public void calculateFromFile_shouldCorrectlyAddWithTheCalculator_forAdditions() throws IOException {
-        // ACT
-        List<CalculationModel> solutions = classUnderTest.calculateFromFile("/path/to/fake/fail");
-        Integer answer = solutions.get(ADDITION_INDEX).getSolution();
-
-        // ASSERT we get back usable models
-        verify(calculatorService, times(1)).calculate(any());
+        assertThat(answer, is(equalTo(6))); // 4+2
     }
 
     @Test
