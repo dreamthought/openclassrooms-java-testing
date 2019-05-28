@@ -3,6 +3,9 @@ package com.openclassrooms.testing.calculator.domain;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 
+/**
+ * Calculates the mean using an instance of IntSummaryStatistics
+ */
 public class StatisticsCalculator {
 
     private final IntSummaryStatistics summaryStatistics;
@@ -17,4 +20,5 @@ public class StatisticsCalculator {
         Double average = summaryStatistics.getAverage();
         return average.intValue();
     }
+
 }
