@@ -20,5 +20,4 @@ public class StatisticsCalculator {
         Double average = summaryStatistics.getAverage();
         return average.intValue();
     }
-
 }
