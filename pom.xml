@@ -18,6 +18,20 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                        <!-- Also checkout Maven Failsafe plugin -->
+                        <include>**/*IT.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
     <dependencies>

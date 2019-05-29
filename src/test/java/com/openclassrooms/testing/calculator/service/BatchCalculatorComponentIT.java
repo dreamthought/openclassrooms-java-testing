@@ -20,7 +20,7 @@ import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class BatchCalculatorComponentIntegrationTest {
+public class BatchCalculatorComponentIT {
 
     // index of fixtures by type
     private static final int MULTIPLICATION_INDEX = 0;
