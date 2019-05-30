@@ -23,7 +23,7 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class BatchCalculatorTest {
+public class BatchCalculatorServiceTest {
     // index of fixtures by type
     private static final int MULTIPLICATION_INDEX = 0;
     private static final int ADDITION_INDEX = 1;
@@ -35,7 +35,7 @@ public class BatchCalculatorTest {
     CalculatorService calculatorService;
 
     // The class we're testing
-    private BatchCalculator classUnderTest;
+    private BatchCalculatorService classUnderTest;
 
     @Before
     public void setup() throws IOException {
@@ -45,7 +45,7 @@ public class BatchCalculatorTest {
         // Let's make sure that the batch calculation service returns this
         when(batchCalculationFileService.read(Mockito.any(String.class))).thenReturn(calculations);
         setupCalculatorServiceMock();
-        classUnderTest = new BatchCalculator(batchCalculationFileService, calculatorService);
+        classUnderTest = new BatchCalculatorService(batchCalculationFileService, calculatorService);
     }
 
     private void setupCalculatorServiceMock() {

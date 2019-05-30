@@ -1,5 +1,7 @@
 package com.openclassrooms.testing.calculator.service;
 
+import com.openclassrooms.testing.calculator.domain.SolutionFormatter;
+import com.openclassrooms.testing.calculator.domain.SolutionFormatterImpl;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;

@@ -1,12 +1,13 @@
-package com.openclassrooms.testing.calculator.service;
+package com.openclassrooms.testing.calculator.domain;
 
-import com.openclassrooms.testing.calculator.domain.Calculator;
 import com.openclassrooms.testing.calculator.domain.model.CalculationModel;
 import com.openclassrooms.testing.calculator.domain.model.CalculationType;
+import org.springframework.stereotype.Component;
 
 /**
  * An interface for classes which want to solve a calculation
  */
+@Component
 public interface Solver {
 
     /**
@@ -19,7 +20,7 @@ public interface Solver {
                                    SolutionFormatter formatter) {
         CalculationType type = calculationModel.getType();
 
-        Integer response = null;
+        Integer response;
         switch (type) {
             case ADDITION:
                 response = calculator.add(

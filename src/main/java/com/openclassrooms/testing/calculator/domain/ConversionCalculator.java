@@ -1,8 +1,11 @@
 package com.openclassrooms.testing.calculator.domain;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Converts between different types of units.
  */
+@Component
 public class ConversionCalculator {
 
     // constants for temperature conversion
@@ -27,7 +30,7 @@ public class ConversionCalculator {
     /**
      * Converts fahrenheit to centigrade
      * @param fahrenheitTemperature to convert
-     * @return
+     * @return Centigrade temperature
      */
     public Double fahrenheitToCelsius(Double fahrenheitTemperature) {
         return (fahrenheitTemperature - BASE_FAHRENHEIT) * CELSIUS_FAHRENHEIT_CONVERSION_FACTOR;

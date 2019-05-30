@@ -1,14 +1,16 @@
 package com.openclassrooms.testing.calculator.service;
 
+import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.stream.Stream;
 
 /**
  * Reads a text file and returns a stream of calculations
  */
+@Service
 public class BatchCalculationFileServiceImpl implements BatchCalculationFileService {
 
     /**

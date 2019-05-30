@@ -1,6 +1,8 @@
 package com.openclassrooms.testing.calculator.service;
 
 import com.openclassrooms.testing.calculator.domain.Calculator;
+import com.openclassrooms.testing.calculator.domain.SolutionFormatter;
+import com.openclassrooms.testing.calculator.domain.SolutionFormatterImpl;
 import com.openclassrooms.testing.calculator.domain.model.CalculationModel;
 import com.openclassrooms.testing.calculator.domain.model.CalculationType;
 import org.junit.Before;
@@ -20,7 +22,7 @@ import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class BatchCalculatorComponentIT {
+public class BatchCalculatorServiceComponentIT {
 
     // index of fixtures by type
     private static final int MULTIPLICATION_INDEX = 0;
@@ -44,11 +46,11 @@ public class BatchCalculatorComponentIT {
     private SolutionFormatter formatter;
 
     // The class we're testing
-    private BatchCalculator classUnderTest;
+    private BatchCalculatorService classUnderTest;
 
     @Before
     public void setup() throws URISyntaxException {
-        classUnderTest = new BatchCalculator(
+        classUnderTest = new BatchCalculatorService(
                 batchCalculationFileService, calculatorService);
 
         // Munged for windows

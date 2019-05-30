@@ -1,6 +1,8 @@
 package com.openclassrooms.testing.calculator.service;
 
 import com.openclassrooms.testing.calculator.domain.Calculator;
+import com.openclassrooms.testing.calculator.domain.SolutionFormatter;
+import com.openclassrooms.testing.calculator.domain.SolutionFormatterImpl;
 import com.openclassrooms.testing.calculator.domain.model.CalculationModel;
 import com.openclassrooms.testing.calculator.domain.model.CalculationType;
 import org.junit.Test;

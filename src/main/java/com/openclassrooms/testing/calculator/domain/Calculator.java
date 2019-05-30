@@ -1,8 +1,11 @@
 package com.openclassrooms.testing.calculator.domain;
 
+import org.springframework.stereotype.Component;
+
 /**
  * A very simple calculator
  */
+@Component
 public class Calculator {
 
     /**

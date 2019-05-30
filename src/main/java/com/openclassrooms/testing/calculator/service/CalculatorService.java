@@ -1,9 +1,13 @@
 package com.openclassrooms.testing.calculator.service;
 
 import com.openclassrooms.testing.calculator.domain.Calculator;
+import com.openclassrooms.testing.calculator.domain.SolutionFormatter;
+import com.openclassrooms.testing.calculator.domain.Solver;
 import com.openclassrooms.testing.calculator.domain.model.CalculationModel;
+import org.springframework.stereotype.Service;
 
-public class CalculatorService implements Solver{
+@Service
+public class CalculatorService implements Solver {
     Calculator calculator;
     private SolutionFormatter formatter;
 

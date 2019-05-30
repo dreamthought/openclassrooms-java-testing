@@ -1,6 +1,9 @@
 package com.openclassrooms.testing.calculator.service;
 
+import com.openclassrooms.testing.calculator.domain.SolutionFormatter;
+import com.openclassrooms.testing.calculator.domain.Solver;
 import com.openclassrooms.testing.calculator.domain.model.CalculationModel;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,7 +13,8 @@ import java.util.stream.Stream;
 /**
  * Supports solving calculations provided in a batch file.
  */
-public class BatchCalculator implements Solver {
+@Service
+public class BatchCalculatorService implements Solver {
 
     // TODO Although I'm sticking to vanilla Java, the curious student,
     // can check out Project Lombok which saves you having to
@@ -24,7 +28,7 @@ public class BatchCalculator implements Solver {
      * @param batchCalculationFileService instance used to read the batch file
      * @param calculatorService instance used to solve problems
      */
-    public BatchCalculator(BatchCalculationFileService batchCalculationFileService, CalculatorService calculatorService) {
+    public BatchCalculatorService(BatchCalculationFileService batchCalculationFileService, CalculatorService calculatorService) {
         this.batchCalculationFileService = batchCalculationFileService;
         this.calculatorService = calculatorService;
    }

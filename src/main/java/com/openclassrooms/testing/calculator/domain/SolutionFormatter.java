@@ -1,5 +1,8 @@
-package com.openclassrooms.testing.calculator.service;
+package com.openclassrooms.testing.calculator.domain;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public interface SolutionFormatter {
     /**
      * Formats a numeric value for presentation

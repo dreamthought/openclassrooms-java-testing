@@ -13,14 +13,16 @@ public class CalculationModel {
     private Integer solution;
     private String formattedSolution;
 
-    public CalculationModel(CalculationType addition, int leftArgument, int rightArgument) {
-        this.type = addition;
+    public CalculationModel(CalculationType calculationType, int leftArgument, int rightArgument) {
+        this.type = calculationType;
         this.leftArgument = leftArgument;
         this.rightArgument = rightArgument;
     }
-
-    public CalculationModel(CalculationType addition, int leftArgument, int rightArgument, Integer solution) {
-        this.type = addition;
+    /**
+     * Convenience Constructor used in test
+     */
+    public CalculationModel(CalculationType calculationType, int leftArgument, int rightArgument, Integer solution) {
+        this.type = calculationType;
         this.leftArgument = leftArgument;
         this.rightArgument = rightArgument;
         this.solution = solution;
@@ -44,7 +46,6 @@ public class CalculationModel {
     public Integer getLeftArgument() {
         return leftArgument;
     }
-
 
     public void setLeftArgument(Integer leftArgument) {
         this.leftArgument = leftArgument;
