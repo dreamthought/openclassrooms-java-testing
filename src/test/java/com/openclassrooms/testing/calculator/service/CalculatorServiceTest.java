@@ -30,7 +30,46 @@ public class CalculatorServiceTest {
         underTest = new CalculatorService(calculator, formatter);
     }
 
-    // DIVISION
+    @Test
+    public void calculate_usesCalculatorToAdd_whenGivenAnAdditionCalculation() {
+        // Arrange
+        when(calculator.add(4,2)).thenReturn(6);
+        CalculationModel calculationModel = new CalculationModel(
+                CalculationType.ADDITION, 4, 2);
+        // Act
+        CalculationModel responseModel = underTest.calculate(calculationModel);
+
+        // Assert
+        verify(calculator, times(1)).add(4,2);
+    }
+
+    @Test
+    public void calculate_usesCalculatorToSubtract_whenGivenASubtractionCalculation() {
+        // Arrange
+        when(calculator.subtract(4,2)).thenReturn(2);
+        CalculationModel calculationModel = new CalculationModel(
+                CalculationType.SUBTRACTION, 4, 2);
+        // Act
+        CalculationModel responseModel = underTest.calculate(calculationModel);
+
+        // Assert
+        verify(calculator, times(1)).subtract(4,2);
+    }
+
+    @Test
+    public void calculate_usesCalculatorToMultiply_whenGivenAMultiplicationCalculation() {
+        // Arrange
+        when(calculator.subtract(4,2)).thenReturn(8);
+        CalculationModel calculationModel = new CalculationModel(
+                CalculationType.MULTIPLICATION, 4, 2);
+        // Act
+        CalculationModel responseModel = underTest.calculate(calculationModel);
+
+        // Assert
+        verify(calculator, times(1)).multiply(4,2);
+    }
+
+
     @Test
     public void calculate_usesCalculatorToDivide_whenGivenADivisionCalculation() {
         // Arrange

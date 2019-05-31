@@ -73,6 +73,32 @@ public class CalculatorTest {
         assertEquals(expected, result);
     }
 
+    // SUBTRACTION
+    @Test
+    public void subtract_shouldReturnTheDifference_ofTwoPositiveNumbers() {
+        // arrange
+        Integer expected = 2; // 5-3
+
+        // act
+        Integer result = calculator.subtract(5, 3);
+
+        // assert
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void subtract_shouldReturnTheDifference_ofAPositiveAndNegativeNumber() {
+        // arrange
+        Integer expected = 5; // 2--3
+
+        // act
+        Integer result = calculator.subtract(2, -3);
+
+        // assert
+        assertEquals(expected, result);
+    }
+
+
     // MULTIPLICATION
     @Test
     public void multiply_shouldReturnTheProduct_ofTwoPositiveNumbers() {

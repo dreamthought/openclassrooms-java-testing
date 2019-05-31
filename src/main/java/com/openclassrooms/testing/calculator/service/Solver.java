@@ -1,5 +1,7 @@
-package com.openclassrooms.testing.calculator.domain;
+package com.openclassrooms.testing.calculator.service;
 
+import com.openclassrooms.testing.calculator.domain.Calculator;
+import com.openclassrooms.testing.calculator.domain.SolutionFormatter;
 import com.openclassrooms.testing.calculator.domain.model.CalculationModel;
 import com.openclassrooms.testing.calculator.domain.model.CalculationType;
 import org.springframework.stereotype.Component;
@@ -36,6 +38,12 @@ public interface Solver {
                 response = calculator.divide(
                         calculationModel.getLeftArgument(),
                         calculationModel.getRightArgument());
+                break;
+            case SUBTRACTION:
+                response = calculator.subtract(
+                        calculationModel.getLeftArgument(),
+                        calculationModel.getRightArgument()
+                );
                 break;
             default:
                 throw new UnsupportedOperationException("Unsupported calculations");

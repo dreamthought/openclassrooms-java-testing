@@ -46,4 +46,8 @@ public class Calculator {
         }
         return dividend / divisor;
     }
+
+    public Integer subtract(int minuend, int subtrahend) {
+        return minuend-subtrahend;
+    }
 }
