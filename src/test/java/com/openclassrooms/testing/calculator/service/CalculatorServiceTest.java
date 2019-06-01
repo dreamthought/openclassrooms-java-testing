@@ -59,7 +59,7 @@ public class CalculatorServiceTest {
     @Test
     public void calculate_usesCalculatorToMultiply_whenGivenAMultiplicationCalculation() {
         // Arrange
-        when(calculator.subtract(4,2)).thenReturn(8);
+        when(calculator.multiply(4,2)).thenReturn(8);
         CalculationModel calculationModel = new CalculationModel(
                 CalculationType.MULTIPLICATION, 4, 2);
         // Act
