@@ -47,7 +47,9 @@
             <artifactId>bootstrap</artifactId>
             <version>${bootstrap.version}</version>
         </dependency>
+
         <!-- test dependencies /-->
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -82,6 +84,24 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- cucumber -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-jvm</artifactId>
+            <version>4.3.1</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-spring</artifactId>
+            <version>4.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>4.3.1</version>
+        </dependency>
+
     </dependencies>
 
 
@@ -109,6 +129,7 @@
                         <include>**/*Test.java</include>
                         <!-- Also checkout Maven Failsafe plugin -->
                         <include>**/*IT.java</include>
+                        <include>**/*AT.java</include>
                     </includes>
                 </configuration>
             </plugin>
