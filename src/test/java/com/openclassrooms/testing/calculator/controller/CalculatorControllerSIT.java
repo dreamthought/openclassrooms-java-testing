@@ -6,6 +6,7 @@ import com.openclassrooms.testing.calculator.service.CalculatorService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -19,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = {CalculatorController.class, CalculatorService.class})
+@AutoConfigureMockMvc
 @RunWith(SpringJUnit4ClassRunner.class)
 public class CalculatorControllerSIT {
 
@@ -47,7 +49,6 @@ public class CalculatorControllerSIT {
         ).andExpect(status().is2xxSuccessful()).
                 andExpect(content().string(containsString("id=\"solution\""))).
                 andExpect(content().string(containsString(">5</span>")));
-
 
         verify(calculator).add(2, 3);
         verify(solutionFormatter).format(5);
