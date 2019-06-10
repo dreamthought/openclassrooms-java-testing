@@ -1,15 +1,14 @@
 package com.openclassrooms.testing.calculator.e2e;
 
+import com.openclassrooms.testing.calculator.e2e.page.CalculatorPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -49,23 +48,22 @@ public class StudentMultiplicationJourneyE2E {
     }
 
     @Test
-    public void aStudentUsesTheCalculatorToMultiplyTwoBySixteen() {
+    public void aStudentUsesTheCalculatorToMultiplyTwoBySixteen() throws InterruptedException {
         webDriver.get(baseUrl);
-        WebElement submitButton = webDriver.findElement(By.id("submit"));
-        WebElement leftField = webDriver.findElement(By.id("left"));
-        WebElement rightField = webDriver.findElement(By.id("right"));
-        WebElement typeDropdown = webDriver.findElement(By.id("type"));
-
-        // Fill in 2 x 16
-        leftField.sendKeys("2");
-        typeDropdown.sendKeys("x");
-        rightField.sendKeys("16");
-        submitButton.click();
-
-        WebDriverWait waiter = new WebDriverWait(webDriver, 5);
-        WebElement solutionElement = waiter.until(
-                ExpectedConditions.presenceOfElementLocated(By.id("solution")));
-        String solution = solutionElement.getText();
+        CalculatorPage calculatorPage = new CalculatorPage(webDriver);
+        PageFactory.initElements(webDriver,calculatorPage);
+        String solution = calculatorPage.multiply("2", "16");
         assertThat(solution, is(equalTo("32"))); // 2 x 16
     }
+
+
+    @Test
+    public void aStudentUsesTheCalculatorToAddTwoToSixteen() throws InterruptedException {
+        webDriver.get(baseUrl);
+        CalculatorPage calculatorPage = new CalculatorPage(webDriver);
+        PageFactory.initElements(webDriver,calculatorPage);
+        String solution = calculatorPage.add("2", "16");
+        assertThat(solution, is(equalTo("18"))); // 2 + 16
+    }
+
 }
