@@ -48,16 +48,6 @@ public class StudentMultiplicationJourneyE2E {
     }
 
     @Test
-    public void aStudentUsesTheCalculatorToMultiplyTwoBySixteen() throws InterruptedException {
-        webDriver.get(baseUrl);
-        CalculatorPage calculatorPage = new CalculatorPage(webDriver);
-        PageFactory.initElements(webDriver,calculatorPage);
-        String solution = calculatorPage.multiply("2", "16");
-        assertThat(solution, is(equalTo("32"))); // 2 x 16
-    }
-
-
-    @Test
     public void aStudentUsesTheCalculatorToAddTwoToSixteen() throws InterruptedException {
         webDriver.get(baseUrl);
         CalculatorPage calculatorPage = new CalculatorPage(webDriver);
