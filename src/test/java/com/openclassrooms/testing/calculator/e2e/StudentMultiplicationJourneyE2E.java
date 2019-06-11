@@ -56,15 +56,18 @@ public class StudentMultiplicationJourneyE2E {
         WebElement rightField = webDriver.findElement(By.id("right"));
         WebElement typeDropdown = webDriver.findElement(By.id("type"));
 
-        // Fill in 2 x 16
+        // ACT: Fill in 2 x 16
         leftField.sendKeys("2");
         typeDropdown.sendKeys("x");
         rightField.sendKeys("16");
         submitButton.click();
 
+        // ASSERT
         WebDriverWait waiter = new WebDriverWait(webDriver, 5);
         WebElement solutionElement = waiter.until(
-                ExpectedConditions.presenceOfElementLocated(By.id("solution")));
+                ExpectedConditions.presenceOfElementLocated(
+                        By.id("solution")));
+
         String solution = solutionElement.getText();
         assertThat(solution, is(equalTo("32"))); // 2 x 16
     }
