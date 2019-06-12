@@ -1,7 +1,8 @@
 # Test Your Own Calculator
+## p2-c2: FIRST Principles
 
-This repository contains the screencasts for the Test Your Own 
-Java Application course.
+This repository contains the screencasts for the FIRST principles 
+from the Test Your Own Java Application course.
 
-Each screencast will have a branch which is referred to in the course notes.
+Use `mvn test`
 
