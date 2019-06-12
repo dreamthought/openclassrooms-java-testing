@@ -1,5 +1,7 @@
 package com.openclassrooms.testing.calculator.service;
 
+import java.math.BigDecimal;
+
 /**
  * A very simple calculator
  */
@@ -11,7 +13,7 @@ public class Calculator {
      * @param addend
      * @return Sum of the two arguments
      */
-    public Integer add(int augend, int addend) {
+    public Double add(Double augend, Double addend) {
         return augend+addend;
     }
 
@@ -21,8 +23,13 @@ public class Calculator {
      * @param multiplyer
      * @return The product of multiplying two values
      */
-    public Integer multiply(int multiplicand, int multiplyer) {
-        return multiplicand*multiplyer;
+    public Double multiply(Double multiplicand, Double multiplyer) {
+        BigDecimal product = BigDecimal.ZERO;
+        for (int counter = 0; counter<multiplyer.intValue(); counter++) {
+            product = product.add(new BigDecimal(multiplicand.toString()));
+        }
+
+        return product.doubleValue();
     }
 
     public void cos(double v) {

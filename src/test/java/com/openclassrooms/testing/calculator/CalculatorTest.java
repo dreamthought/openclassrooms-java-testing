@@ -39,10 +39,10 @@ public class CalculatorTest {
     @Test
     public void add_shouldReturnTheSum_ofTwoPositiveNumbers() {
         // arrange
-        Integer expected = 3; // 1+2
+        Double expected = 3.0; // 1+2
 
         // act
-        Integer result = calculator.add(1, 2);
+        Double result = calculator.add(1.0, 2.0);
 
         // assert
         assertEquals(expected, result);
@@ -51,10 +51,10 @@ public class CalculatorTest {
     @Test
     public void add_shouldReturnTheSum_ofNegativeNumbers() {
         // arrange
-        Integer expected = -3; // -1+-2
+        Double expected = -3.0; // -1+-2
 
         // act
-        Integer result = calculator.add(-1, -2);
+        Double result = calculator.add(-1.0, -2.0);
 
         // assert
         assertEquals(expected, result);
@@ -63,10 +63,10 @@ public class CalculatorTest {
     @Test
     public void add_shouldReturnTheSum_ofAPositiveAndNegativeNumber() {
         // arrange
-        Integer expected = 1; // -2+3
+        Double expected = 1.0; // -2+3
 
         // act
-        Integer result = calculator.add(-2, 3);
+        Double result = calculator.add(-2.0, 3.0);
 
         // assert
         assertEquals(expected, result);
@@ -75,13 +75,20 @@ public class CalculatorTest {
     @Test
     public void multiply_shouldReturnTheProduct_ofTwoPositiveNumbers() {
         // arrange
-        Integer expected = 6;
+        Double expected = 6.0;
 
         // act
-        Integer product = calculator.multiply(2, 3);
+        Double product = calculator.multiply(2.0, 3.0);
 
         // assert that product is equal to 6
         assertThat(product, is(equalTo(expected))); // 2x3
+    }
+
+    @Test
+    public void multiply_shouldReturnTheProduct_ofADecimalByALargeNumber() {
+        Double expected = 20.20;
+        Double product = calculator.multiply(0.2, 101.0);
+        assertThat(product, is(equalTo(expected)));
     }
 
     @Test(expected = UnsupportedOperationException.class)
@@ -97,24 +104,5 @@ public class CalculatorTest {
         // Act by calling a slow calculation
         calculator.slowCalculation();
     }
-
-    // Part 2 - Chapter 2 - Screencast 2
-    private static Integer lastNumber = 2;
-
-    @Test
-    @Ignore("Re-enable to make this test brittle")
-    public void add_shouldAddTwo_toTwo() throws InterruptedException {
-        //fail();
-        lastNumber = calculator.add(lastNumber, 2);
-        assertThat(lastNumber, is(equalTo(4)));
-    }
-
-    @Test
-    @Ignore("Re-enable to make this test brittle")
-    public void add_shouldAddTwo_toFour() throws InterruptedException {
-        lastNumber = calculator.add(lastNumber, 2);
-        assertThat(lastNumber, is(equalTo(6)));
-    }
-
 
 }

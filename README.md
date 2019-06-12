@@ -1,14 +1,14 @@
 # Test Your Own Calculator
-## P2 Activity : Implementing Subtraction
+## p2-c3-sc1
 
-You should be on the p2-activity branch
+This branch contains a solution which multiplies two doubles and avoids floating point arithmetic errors.
 
-A student has reported that the calculator does not allow you to subract two numbers.
+Have a go at:
+* Implementing division of two Doubles using a test case of 20.2 / 102
+* Use the BigDecimal library and call the `bigDecimal.divide(BigDecimal dividedBy);` method.
+* Add your test case to CalculatorTest and see if you can make it work. First try it without
+  BigDecimal and then with.
+* If you're feeling up to the challenge see if you can find other ways to break the code.
 
-You must:
-* Add test cases for subtraction to the CalculatorTest and Calculator classes using Red-Green-Refactor 
- * Ensure that you test a variety of situations.
-* Add test cases to CalculatorServiceTest and implement the required additions to support subtraction.
- * Note that you will have to provide support for this in the Solver interface.
- * You should aim to mock your Calculator instance when writing CalcualtorService tests.
- * This should be very similar for what we've done for multiplication, division and addition. Try to come up with even better test scenarios!
+Have fun!
+

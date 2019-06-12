@@ -6,35 +6,35 @@ package com.openclassrooms.testing.calculator.model;
  */
 public class CalculationModel {
     public static final String SEPARATOR = " ";
-    private Integer leftArgument;
-    private Integer rightArgument;
+    private Double leftArgument;
+    private Double rightArgument;
     private CalculationType type;
-    private Integer solution;
+    private Double solution;
 
     public static CalculationModel fromText(String calculation) {
         CalculationModel model = new CalculationModel();
         String[] parts = calculation.split(SEPARATOR);
 
-        model.setLeftArgument(Integer.parseInt(parts[0]));
-        model.setRightArgument(Integer.parseInt(parts[2]));
+        model.setLeftArgument(new Double(Integer.parseInt(parts[0])));
+        model.setRightArgument(new Double(Integer.parseInt(parts[2])));
         String operation = parts[1];
         model.setType( CalculationType.fromSymbol(operation) );
         return model;
     }
 
-    public Integer getLeftArgument() {
+    public Double getLeftArgument() {
         return leftArgument;
     }
 
-    public void setLeftArgument(Integer leftArgument) {
+    public void setLeftArgument(Double leftArgument) {
         this.leftArgument = leftArgument;
     }
 
-    public Integer getRightArgument() {
+    public Double getRightArgument() {
         return rightArgument;
     }
 
-    public void setRightArgument(Integer rightArgument) {
+    public void setRightArgument(Double rightArgument) {
         this.rightArgument = rightArgument;
     }
 
@@ -46,11 +46,11 @@ public class CalculationModel {
         this.type = type;
     }
 
-    public Integer getSolution() {
+    public Double getSolution() {
         return solution;
     }
 
-    public void setSolution(Integer solution) {
+    public void setSolution(Double solution) {
         this.solution = solution;
     }
 }

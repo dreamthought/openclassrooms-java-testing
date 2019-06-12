@@ -48,7 +48,7 @@ public class BatchCalculator {
     private CalculationModel solve(CalculationModel calculationModel) {
         CalculationType type = calculationModel.getType();
 
-        Integer response = null;
+        Double response = null;
         switch (type) {
             case ADDITION:
                 response = calculator.add(

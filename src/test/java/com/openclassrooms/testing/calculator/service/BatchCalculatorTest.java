@@ -42,8 +42,8 @@ public class BatchCalculatorTest {
         when(batchCalculationFileService.read(Mockito.any(String.class))).thenReturn(calculations);
 
         // Set up the calculator
-        when(calculator.add(2, 2)).thenReturn(4);
-        when(calculator.multiply(3, 2)).thenReturn(6);
+        when(calculator.add(2.0, 2.0)).thenReturn(4.0);
+        when(calculator.multiply(3.0, 2.0)).thenReturn(6.0);
 
         classUnderTest = new BatchCalculator(batchCalculationFileService, calculator);
     }
@@ -70,40 +70,40 @@ public class BatchCalculatorTest {
     public void calculateFromFile_shouldReturnTheCorrectAnswer_forAdditions() throws IOException {
         // ACT
         List<CalculationModel> solutions = classUnderTest.calculateFromFile("/path/to/fake/fail");
-        Integer answer = solutions.get(ADDITION_INDEX).getSolution();
+        Double answer = solutions.get(ADDITION_INDEX).getSolution();
 
         // ASSERT we get back usable models
-        assertThat(answer, is(equalTo(4)));
+        assertThat(answer, is(equalTo(4.0)));
     }
 
     @Test
     public void calculateFromFile_shouldCorrectlyAddWithTheCalculator_forAdditions() throws IOException {
         // ACT
         List<CalculationModel> solutions = classUnderTest.calculateFromFile("/path/to/fake/fail");
-        Integer answer = solutions.get(ADDITION_INDEX).getSolution();
+        Double answer = solutions.get(ADDITION_INDEX).getSolution();
 
         // ASSERT we get back usable models
-        verify(calculator, times(1)).add(2, 2);
+        verify(calculator, times(1)).add(2.0, 2.0);
     }
 
     @Test
     public void calculateFromFile_shouldReturnTheCorrectAnswer_forMultiplication() throws IOException {
         // ACT
         List<CalculationModel> solutions = classUnderTest.calculateFromFile("/path/to/fake/fail");
-        Integer answer = solutions.get(MULTIPLICATION_INDEX).getSolution();
+        Double answer = solutions.get(MULTIPLICATION_INDEX).getSolution();
 
         // ASSERT we get back usable models
-        assertThat(answer, is(equalTo(6)));
+        assertThat(answer, is(equalTo(6.0)));
     }
 
     @Test
     public void calculateFromFile_shouldCorrectlyMultiplyWithTheCalculator_forProducts() throws IOException {
         // ACT
         List<CalculationModel> solutions = classUnderTest.calculateFromFile("/path/to/fake/fail");
-        Integer answer = solutions.get(ADDITION_INDEX).getSolution();
+        Double answer = solutions.get(ADDITION_INDEX).getSolution();
 
         // ASSERT we get back usable models
-        verify(calculator, times(1)).multiply(3, 2);
+        verify(calculator, times(1)).multiply(3.0, 2.0);
     }
 
     @Test
@@ -114,10 +114,10 @@ public class BatchCalculatorTest {
 
         // ASSERT we get back usable models
         assertThat(answer, allOf(
-                hasProperty("leftArgument", is(2)),
-                hasProperty("rightArgument", is(2)),
+                hasProperty("leftArgument", is(2.0)),
+                hasProperty("rightArgument", is(2.0)),
                 hasProperty("type", is(equalTo(CalculationType.ADDITION))),
-                hasProperty("solution", is(4))));
+                hasProperty("solution", is(4.0))));
     }
 
 
