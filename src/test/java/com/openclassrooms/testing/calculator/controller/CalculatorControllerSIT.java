@@ -41,9 +41,9 @@ public class CalculatorControllerSIT {
     public void givenAStudentUsingTheApp_whenAreRequestIsMadeToAdd_thenASolutionSouldBeShown() throws Exception {
         when(calculator.add(2,3)).thenReturn(5);
         mockMvc.perform(post("/calculator")
-        .param("leftArgument", "2")
-        .param("rightArgument", "3")
-        .param("calculationType", "ADDITION")
+                .param("leftArgument", "2")
+                .param("rightArgument", "3")
+                .param("calculationType", "ADDITION")
         ).andExpect(status().is2xxSuccessful()).
                 andExpect(content().string(containsString("id=\"solution\""))).
                 andExpect(content().string(containsString(">5</span>")));
