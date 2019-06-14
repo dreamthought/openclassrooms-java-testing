@@ -32,17 +32,19 @@ public class CalculatorController {
 
     @PostMapping("/calculator")
     public String calculate(@Valid Calculation calculation, BindingResult bindingResult, Model model) {
-        // TODO: For the eger beaver, feel free to change this to use a formatter
-        // I'm keeping the code transparent here to reduce "Magic"
-        CalculationType type = CalculationType.valueOf(calculation.getCalculationType());
-        CalculationModel calculationModel = new CalculationModel(
-                type,
-                calculation.getLeftArgument(),
-                calculation.getRightArgument());
+        if (! bindingResult.hasErrors()) {
+            // TODO: For the eger beaver, feel free to change this to use a formatter
+            // I'm keeping the code transparent here to reduce "Magic"
+            CalculationType type = CalculationType.valueOf(calculation.getCalculationType());
+            CalculationModel calculationModel = new CalculationModel(
+                    type,
+                    calculation.getLeftArgument(),
+                    calculation.getRightArgument());
 
-        CalculationModel response = calculatorService.calculate(calculationModel);
+            CalculationModel response = calculatorService.calculate(calculationModel);
 
-        model.addAttribute("response", response);
+            model.addAttribute("response", response);
+        }
         return CALCULATOR_TEMPLATE;  // see resources/templates/calculator.html
     }
 }

@@ -1,11 +1,16 @@
 package com.openclassrooms.testing.calculator.domain.model;
 
+import javax.validation.constraints.NotNull;
+
 public class Calculation {
 
+    @NotNull
     private String calculationType;
 
+    @NotNull
     private Integer leftArgument;
 
+    @NotNull
     private Integer rightArgument;
 
     public String getCalculationType() {
